@@ -25,24 +25,20 @@ class ball_control : public cnoid::SimpleController
   double Dtime;
   
 public:
-  bool SetRobotModel(SimpleControllerIO* io)
-  {
-    ioBody = io->body();
-    io->os() << "body->mass() = " << ioBody->mass() << " [kg]" << endl;
 
-    Dtime = io->timeStep();
-
-    return true;
-  }
-  
-  //-------------------------------------------------------------------
   virtual bool initialize(SimpleControllerIO* io)
   {
-    io->setJointOutput(JOINT_ANGLE);
-    io->setJointInput(JOINT_ANGLE);
-    io->os() << "ball_control: position mode." << endl;
+    ioBody = io->body();
     
-    if(!SetRobotModel(io) ) return false;
+    io->enableInput(ioBody->rootLink(), LINK_POSITION);
+    io->enableOutput(ioBody->rootLink());
+    
+    io->os() << "ball_control: LINK_POSITION mode." << endl;
+
+    Dtime = io->timeStep();
+    io->os() << "body->mass() = " << ioBody->mass() << " [kg]" << endl;
+    Position T = ioBody->rootLink()->position();
+    io->os() << "position = " << T.translation() << " [m]" << endl;
     
     return true;
   }
@@ -52,6 +48,12 @@ public:
     timeCount++;
     time = Dtime*timeCount;
 
+    Position T = ioBody->rootLink()->position();
+    Vector3 p = T.translation();
+
+    
+    //ioBody->rootLink()->setTranslation(p);
+    
     return true;
   }
         

@@ -1,4 +1,4 @@
-PLUGINS = ball_control.so 
+PLUGINS = ball_control.so marker_control.so
 
 all: $(PLUGINS)
 
