@@ -1,0 +1,27 @@
+format: ChoreonoidBody
+formatVersion: 1.0
+angleUnit: radian
+name: Ball
+
+links:
+  -
+    name: body
+    jointType: free
+    translation: [ 0, 0, 0.1 ]
+    rotatoin: [ 0, 0, 1, 0 ]
+    elements:
+      -
+        type: RigidBody
+        mass: 2.0
+        inertia: [
+          0.1, 0, 0,
+          0, 0.1, 0,
+          0, 0, 0.1 ]
+        elements:
+          Shape:
+            geometry:
+              type: Sphere
+              radius: 0.1
+            appearance:
+              material:
+                diffuseColor: [ 0.6, 0.6, 1 ]
