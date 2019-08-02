@@ -3,63 +3,44 @@
    @author S.Kajita
 */
 
-#include <cnoid/SimpleController>
-#include <cnoid/Link>
-#include <cnoid/BodyMotion>
+#include "marker_control.h"
 
 using namespace std;
 using namespace cnoid;
 
-const int X=0;
-const int Y=1;
-const int Z=2;
+static marker_control* instance = nullptr;
 
-class marker_control : public cnoid::SimpleController
+marker_control* marker_control::instance()
 {
-  BodyPtr ioBody;
+  return ::instance;
+}
 
-  int timeCount;
-  double time;
+marker_control::marker_control()
+{
+  ::instance = this;
+}
 
-  double Dtime;
-  
-public:
-
-  virtual bool initialize(SimpleControllerIO* io)
-  {
-    ioBody = io->body();
+bool marker_control::initialize(SimpleControllerIO* io)
+{
+  ioBody = io->body();
     
-    ioBody->rootLink()->setActuationMode(Link::LINK_POSITION);
-    io->enableInput(ioBody->rootLink(), LINK_POSITION);
+  ioBody->rootLink()->setActuationMode(Link::LINK_POSITION);
+  io->enableInput(ioBody->rootLink(), Link::LINK_POSITION);
     
-    io->os() << "marker_control: LINK_POSITION mode." << endl;
-    io->enableOutput(ioBody->rootLink());
-
-    Dtime = io->timeStep();
-    io->os() << "body->mass() = " << ioBody->mass() << " [kg]" << endl;
-    Position T = ioBody->rootLink()->position();
-    io->os() << "position = " << T.translation() << " [m]" << endl;
+  io->os() << "marker_control: LINK_POSITION mode." << endl;
+  io->enableOutput(ioBody->rootLink());
     
-    return true;
-  }
+  return true;
+}
 
-  virtual bool control()
-  {
-    timeCount++;
-    time = Dtime*timeCount;
+bool marker_control::control()
+{
+  return true;
+}
 
-    Position T = ioBody->rootLink()->position();
-    Vector3 p = T.translation();
-
-    //p(X) += Dtime*0.01;
-    p << 0, 0, 0.2;
-    
-    ioBody->rootLink()->setTranslation(p);
-
-    
-    return true;
-  }
-        
-};
+void marker_control::setMarkerPosition(Vector3& p)
+{
+  ioBody->rootLink()->setTranslation(p);
+}
 
 CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(marker_control)
