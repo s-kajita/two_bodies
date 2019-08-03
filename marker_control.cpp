@@ -1,5 +1,5 @@
 /**
-   Marker control
+   Marker controller
    @author S.Kajita
 */
 
@@ -9,39 +9,41 @@
 using namespace std;
 using namespace cnoid;
 
-static marker_control* instance = nullptr;
+static MarkerController* instance = nullptr;
 
-marker_control* marker_control::instance()
+MarkerController* MarkerController::instance()
 {
   return ::instance;
 }
 
-marker_control::marker_control()
+MarkerController::MarkerController()
 {
   ::instance = this;
 }
 
-bool marker_control::initialize(SimpleControllerIO* io)
+bool MarkerController::initialize(SimpleControllerIO* io)
 {
+  this->io = io;
+  
   ioBody = io->body();
     
   ioBody->rootLink()->setActuationMode(Link::LINK_POSITION);
   io->enableInput(ioBody->rootLink(), Link::LINK_POSITION);
     
-  io->os() << "marker_control: LINK_POSITION mode." << endl;
+  io->os() << "MarkerController: LINK_POSITION mode." << endl;
   io->enableOutput(ioBody->rootLink());
     
   return true;
 }
 
-bool marker_control::control()
+bool MarkerController::control()
 {
   return true;
 }
 
-void marker_control::setMarkerPosition(Vector3& p)
+void MarkerController::setMarkerPosition(Vector3& p)
 {
   ioBody->rootLink()->setTranslation(p);
 }
 
-CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(marker_control)
+CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(MarkerController)

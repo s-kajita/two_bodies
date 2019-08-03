@@ -39,42 +39,6 @@ items:
             isEditable: false
         - 
           id: 3
-          name: "Ball"
-          plugin: Body
-          class: BodyItem
-          data: 
-            modelFile: "${PROJECT_DIR}/model/ball1.body"
-            currentBaseLink: "body"
-            rootPosition: [ 0.0452831012, 0.605785808, 0.0996062214 ]
-            rootAttitude: [ 
-              0.517776684, 0.281000026, -0.808050921, 
-              -0.63740962, -0.503282827, -0.583451259, 
-              -0.570627971, 0.817156889, -0.0814759939 ]
-            jointPositions: [  ]
-            initialRootPosition: [ 0, 0, 0.1 ]
-            initialRootAttitude: [ 
-              1, 0, 0, 
-              0, 1, 0, 
-              0, 0, 1 ]
-            zmp: [ 0, 0, 0 ]
-            collisionDetection: true
-            selfCollisionDetection: false
-            isEditable: true
-          children: 
-            - 
-              id: 4
-              name: "SimpleController"
-              plugin: Body
-              class: SimpleControllerItem
-              data: 
-                isNoDelayMode: false
-                controllerOptions: ""
-                controller: "ball_control.so"
-                baseDirectory: "Project directory"
-                reloading: false
-                isOldTargetVariableMode: false
-        - 
-          id: 5
           name: "Marker"
           plugin: Body
           class: BodyItem
@@ -98,7 +62,7 @@ items:
             isEditable: true
           children: 
             - 
-              id: 6
+              id: 4
               name: "SimpleController"
               plugin: Body
               class: SimpleControllerItem
@@ -106,6 +70,42 @@ items:
                 isNoDelayMode: false
                 controllerOptions: ""
                 controller: "marker_control.so"
+                baseDirectory: "Project directory"
+                reloading: false
+                isOldTargetVariableMode: false
+        - 
+          id: 5
+          name: "Ball"
+          plugin: Body
+          class: BodyItem
+          data: 
+            modelFile: "${PROJECT_DIR}/model/ball1.body"
+            currentBaseLink: "body"
+            rootPosition: [ 0.169453551, -0.364932209, 0.0994930096 ]
+            rootAttitude: [ 
+              0.11018552, -0.744559553, 0.658399744, 
+              0.961186636, -0.0887587795, -0.261231947, 
+              0.2529415, 0.661629013, 0.70588076 ]
+            jointPositions: [  ]
+            initialRootPosition: [ 0, 0, 0.1 ]
+            initialRootAttitude: [ 
+              1, 0, 0, 
+              0, 1, 0, 
+              0, 0, 1 ]
+            zmp: [ 0, 0, 0 ]
+            collisionDetection: true
+            selfCollisionDetection: false
+            isEditable: true
+          children: 
+            - 
+              id: 6
+              name: "SimpleController"
+              plugin: Body
+              class: SimpleControllerItem
+              data: 
+                isNoDelayMode: false
+                controllerOptions: ""
+                controller: "ball_control.so"
                 baseDirectory: "Project directory"
                 reloading: false
                 isOldTargetVariableMode: false
@@ -151,8 +151,9 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
+      selected: [ 7 ]
       checked: [ 1, 2, 3, 5 ]
-      expanded: [ 1, 2, 3, 4, 5 ]
+      expanded: [ 1, 2, 3, 4, 5, 6 ]
   - 
     id: 2
     plugin: Base
@@ -206,7 +207,7 @@ views:
           far: 200
           eye: [ -3.23365504, 0.402325757, 1.64988516 ]
           direction: [ 0.985878526, -0.0473043004, -0.160641948 ]
-          up: [ 0.160457347, -0.00769904439, 0.987012748 ]
+          up: [ 0.160457347, -0.00769904435, 0.987012748 ]
         - 
           camera: [ System, Orthographic ]
           orthoHeight: 20
@@ -246,7 +247,7 @@ views:
       slider: true
       dial: true
       labelOnLeft: true
-      currentBodyItem: 5
+      currentBodyItem: 3
   - 
     id: 7
     plugin: Body
@@ -254,7 +255,7 @@ views:
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 5
+      currentBodyItem: 3
   - 
     id: 8
     plugin: OpenRTM
@@ -278,7 +279,7 @@ toolbars:
     frameRate: 1000
     playbackFrameRate: 60
     idleLoopDrivenMode: false
-    currentTime: 18.167
+    currentTime: 17.185
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
@@ -291,7 +292,7 @@ toolbars:
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
   "BodyBar": 
-    current: 5
+    current: 3
   "LeggedBodyBar": 
     stanceWidth: 0.15
   "BodyMotionGenerationBar": 

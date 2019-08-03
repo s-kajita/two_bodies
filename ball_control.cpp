@@ -16,7 +16,7 @@ const int X=0;
 const int Y=1;
 const int Z=2;
 
-class ball_control : public cnoid::SimpleController
+class BallController : public cnoid::SimpleController
 {
   BodyPtr ioBody;
 
@@ -25,18 +25,20 @@ class ball_control : public cnoid::SimpleController
 
   double Dtime;
 
-  marker_control* markerControl;
+  SimpleControllerIO* io;
+  MarkerController* markerControl;
   
 public:
 
   virtual bool initialize(SimpleControllerIO* io)
   {
+    this->io = io;
     ioBody = io->body();
     
     io->enableInput(ioBody->rootLink(), LINK_POSITION);
     io->enableOutput(ioBody->rootLink());
     
-    io->os() << "ball_control: LINK_POSITION mode." << endl;
+    io->os() << "BallController: LINK_POSITION mode." << endl;
 
     Dtime = io->timeStep();
     io->os() << "body->mass() = " << ioBody->mass() << " [kg]" << endl;
@@ -48,7 +50,7 @@ public:
 
   virtual bool start() override
   {
-    markerControl = NULL;
+    //markerControl = MarkerController::instance();  // <======== This line makes a CRASH!! ====
     return true;
   }
 
@@ -64,15 +66,10 @@ public:
       p(Z) = 0.3;		// keep constant marker height 
       markerControl->setMarkerPosition(p);
     }
-    else{
-      if( timeCount > 100 ){
-	//markerControl = marker_control::instance();    // instance is undefined symbol why??
-      }
-    }
     
     return true;
   }
         
 };
 
-CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(ball_control)
+CNOID_IMPLEMENT_SIMPLE_CONTROLLER_FACTORY(BallController)

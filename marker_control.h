@@ -10,16 +10,16 @@
 
 namespace cnoid {
 
-class CNOID_GENERAL_EXPORT marker_control : public SimpleController
+class CNOID_GENERAL_EXPORT MarkerController : public SimpleController
 {
   SimpleControllerIO* io;
   BodyPtr ioBody;
   double Dtime;
   
 public:
-  static marker_control* instance();
+  static MarkerController* instance();
 
-  marker_control();
+  MarkerController();
   virtual bool initialize(SimpleControllerIO* io) override;
   virtual bool control() override;
   void setMarkerPosition(Vector3& p);      
