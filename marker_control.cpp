@@ -4,6 +4,7 @@
 */
 
 #include "marker_control.h"
+#include <cnoid/EigenUtil>
 
 using namespace std;
 using namespace cnoid;

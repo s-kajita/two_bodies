@@ -39,42 +39,6 @@ items:
             isEditable: false
         - 
           id: 3
-          name: "Marker"
-          plugin: Body
-          class: BodyItem
-          data: 
-            modelFile: "${PROJECT_DIR}/model/marker.body"
-            currentBaseLink: "body"
-            rootPosition: [ 0.0105550509, 0.00432321346, 0.0291765818 ]
-            rootAttitude: [ 
-              0.885630545, 0.056839331, 0.460898936, 
-              -0.121269491, 0.986350579, 0.11138333, 
-              -0.448276978, -0.154537458, 0.880435077 ]
-            jointPositions: [  ]
-            initialRootPosition: [ 0, 0, 0.1 ]
-            initialRootAttitude: [ 
-              1, 0, 0, 
-              0, 1, 0, 
-              0, 0, 1 ]
-            zmp: [ 0, 0, 0 ]
-            collisionDetection: true
-            selfCollisionDetection: false
-            isEditable: true
-          children: 
-            - 
-              id: 4
-              name: "SimpleController"
-              plugin: Body
-              class: SimpleControllerItem
-              data: 
-                isNoDelayMode: false
-                controllerOptions: ""
-                controller: ""
-                baseDirectory: "Controller directory"
-                reloading: false
-                isOldTargetVariableMode: false
-        - 
-          id: 5
           name: "Ball"
           plugin: Body
           class: BodyItem
@@ -98,7 +62,7 @@ items:
             isEditable: true
           children: 
             - 
-              id: 6
+              id: 4
               name: "SimpleController"
               plugin: Body
               class: SimpleControllerItem
@@ -106,6 +70,42 @@ items:
                 isNoDelayMode: false
                 controllerOptions: ""
                 controller: "ball_control.so"
+                baseDirectory: "Project directory"
+                reloading: false
+                isOldTargetVariableMode: false
+        - 
+          id: 5
+          name: "Marker"
+          plugin: Body
+          class: BodyItem
+          data: 
+            modelFile: "${PROJECT_DIR}/model/marker.body"
+            currentBaseLink: "body"
+            rootPosition: [ 0, 0, 0.1 ]
+            rootAttitude: [ 
+              1, 0, 0, 
+              0, 1, 0, 
+              0, 0, 1 ]
+            jointPositions: [  ]
+            initialRootPosition: [ 0, 0, 0.1 ]
+            initialRootAttitude: [ 
+              1, 0, 0, 
+              0, 1, 0, 
+              0, 0, 1 ]
+            zmp: [ 0, 0, 0 ]
+            collisionDetection: true
+            selfCollisionDetection: false
+            isEditable: true
+          children: 
+            - 
+              id: 6
+              name: "SimpleController"
+              plugin: Body
+              class: SimpleControllerItem
+              data: 
+                isNoDelayMode: false
+                controllerOptions: ""
+                controller: "marker_control.so"
                 baseDirectory: "Project directory"
                 reloading: false
                 isOldTargetVariableMode: false
@@ -151,9 +151,8 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 7 ]
       checked: [ 1, 2, 3, 5 ]
-      expanded: [ 1, 2, 3, 5, 6 ]
+      expanded: [ 1, 2, 3, 4, 5 ]
   - 
     id: 2
     plugin: Base
@@ -207,7 +206,7 @@ views:
           far: 200
           eye: [ -3.23365504, 0.402325757, 1.64988516 ]
           direction: [ 0.985878526, -0.0473043004, -0.160641948 ]
-          up: [ 0.160457347, -0.0076990444, 0.987012748 ]
+          up: [ 0.160457347, -0.00769904439, 0.987012748 ]
         - 
           camera: [ System, Orthographic ]
           orthoHeight: 20
@@ -247,7 +246,7 @@ views:
       slider: true
       dial: true
       labelOnLeft: true
-      currentBodyItem: 3
+      currentBodyItem: 5
   - 
     id: 7
     plugin: Body
@@ -255,7 +254,7 @@ views:
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 3
+      currentBodyItem: 5
   - 
     id: 8
     plugin: OpenRTM
@@ -292,7 +291,7 @@ toolbars:
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
   "BodyBar": 
-    current: 3
+    current: 5
   "LeggedBodyBar": 
     stanceWidth: 0.15
   "BodyMotionGenerationBar": 
@@ -402,7 +401,7 @@ layoutOfToolBars:
   rows: 
     - 
       - { name: "FileBar", x: 0, priority: 0 }
-      - { name: "ScriptBar", x: 47, priority: 0 }
+      - { name: "ScriptBar", x: 47, priority: 1 }
       - { name: "TimeBar", x: 94, priority: 0 }
       - { name: "SceneBar", x: 1159, priority: 0 }
       - { name: "GraphBar", x: 1429, priority: 0 }

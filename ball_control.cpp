@@ -7,6 +7,8 @@
 #include <cnoid/Link>
 #include <cnoid/BodyMotion>
 
+#include "marker_control.h"
+
 using namespace std;
 using namespace cnoid;
 
@@ -19,10 +21,11 @@ class ball_control : public cnoid::SimpleController
   BodyPtr ioBody;
 
   int timeCount;
-  int holdCount;
   double time;
 
   double Dtime;
+
+  marker_control* markerControl;
   
 public:
 
@@ -43,7 +46,13 @@ public:
     return true;
   }
 
-  virtual bool control()
+  virtual bool start() override
+  {
+    markerControl = NULL;
+    return true;
+  }
+
+  virtual bool control() override
   {
     timeCount++;
     time = Dtime*timeCount;
@@ -51,8 +60,15 @@ public:
     Position T = ioBody->rootLink()->position();
     Vector3 p = T.translation();
 
-    
-    //ioBody->rootLink()->setTranslation(p);
+    if(markerControl){
+      p(Z) = 0.3;		// keep constant marker height 
+      markerControl->setMarkerPosition(p);
+    }
+    else{
+      if( timeCount > 100 ){
+	//markerControl = marker_control::instance();    // instance is undefined symbol why??
+      }
+    }
     
     return true;
   }
