@@ -63,14 +63,14 @@ items:
           children: 
             - 
               id: 4
-              name: "SimpleController"
+              name: "MarkerController"
               plugin: Body
               class: SimpleControllerItem
               data: 
                 isNoDelayMode: false
                 controllerOptions: ""
-                controller: "marker_control.so"
-                baseDirectory: "Project directory"
+                controller: "MarkerController.so"
+                baseDirectory: "Controller directory"
                 reloading: false
                 isOldTargetVariableMode: false
         - 
@@ -106,7 +106,7 @@ items:
                 isNoDelayMode: false
                 controllerOptions: ""
                 controller: "ball_control.so"
-                baseDirectory: "Project directory"
+                baseDirectory: "Controller directory"
                 reloading: false
                 isOldTargetVariableMode: false
         - 
@@ -151,7 +151,7 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 7 ]
+      selected: [ 4 ]
       checked: [ 1, 2, 3, 5 ]
       expanded: [ 1, 2, 3, 4, 5, 6 ]
   - 
@@ -207,7 +207,7 @@ views:
           far: 200
           eye: [ -3.23365504, 0.402325757, 1.64988516 ]
           direction: [ 0.985878526, -0.0473043004, -0.160641948 ]
-          up: [ 0.160457347, -0.00769904435, 0.987012748 ]
+          up: [ 0.160457347, -0.00769904433, 0.987012748 ]
         - 
           camera: [ System, Orthographic ]
           orthoHeight: 20
@@ -283,18 +283,6 @@ toolbars:
     speedScale: 1
     syncToOngoingUpdates: true
     autoExpansion: true
-  "KinematicsBar": 
-    mode: AUTO
-    enablePositionDragger: true
-    penetrationBlock: false
-    collisionLinkHighlight: false
-    snapDistance: 0.025
-    penetrationBlockDepth: 0.0005
-    lazyCollisionDetectionMode: true
-  "BodyBar": 
-    current: 3
-  "LeggedBodyBar": 
-    stanceWidth: 0.15
   "BodyMotionGenerationBar": 
     autoGenerationForNewBody: true
     balancer: false
@@ -317,6 +305,18 @@ toolbars:
     zmpMaxDistanceFromCenter: 0.02
     allLinkPositions: false
     lipSyncMix: false
+  "KinematicsBar": 
+    mode: AUTO
+    enablePositionDragger: true
+    penetrationBlock: false
+    collisionLinkHighlight: false
+    snapDistance: 0.025
+    penetrationBlockDepth: 0.0005
+    lazyCollisionDetectionMode: true
+  "BodyBar": 
+    current: 3
+  "LeggedBodyBar": 
+    stanceWidth: 0.15
 Body: 
   "BodyMotionEngine": 
     updateJointVelocities: false
@@ -361,7 +361,7 @@ viewAreas:
     contents: 
       type: splitter
       orientation: horizontal
-      sizes: [ 260, 1269 ]
+      sizes: [ 349, 1180 ]
       children: 
         - 
           type: splitter
@@ -384,7 +384,7 @@ viewAreas:
             - 
               type: splitter
               orientation: horizontal
-              sizes: [ 549, 714 ]
+              sizes: [ 510, 664 ]
               children: 
                 - 
                   type: pane
