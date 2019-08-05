@@ -70,7 +70,7 @@ items:
                 isNoDelayMode: false
                 controllerOptions: ""
                 controller: "MarkerController.so"
-                baseDirectory: "Controller directory"
+                baseDirectory: "Project directory"
                 reloading: false
                 isOldTargetVariableMode: false
         - 
@@ -99,14 +99,14 @@ items:
           children: 
             - 
               id: 6
-              name: "SimpleController"
+              name: "BallController"
               plugin: Body
               class: SimpleControllerItem
               data: 
                 isNoDelayMode: false
                 controllerOptions: ""
-                controller: "ball_control.so"
-                baseDirectory: "Controller directory"
+                controller: "BallController.so"
+                baseDirectory: "Project directory"
                 reloading: false
                 isOldTargetVariableMode: false
         - 
@@ -207,7 +207,7 @@ views:
           far: 200
           eye: [ -3.23365504, 0.402325757, 1.64988516 ]
           direction: [ 0.985878526, -0.0473043004, -0.160641948 ]
-          up: [ 0.160457347, -0.00769904433, 0.987012748 ]
+          up: [ 0.160457347, -0.00769904431, 0.987012748 ]
         - 
           camera: [ System, Orthographic ]
           orthoHeight: 20
@@ -247,7 +247,7 @@ views:
       slider: true
       dial: true
       labelOnLeft: true
-      currentBodyItem: 3
+      currentBodyItem: 5
   - 
     id: 7
     plugin: Body
@@ -255,7 +255,7 @@ views:
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 3
+      currentBodyItem: 5
   - 
     id: 8
     plugin: OpenRTM
@@ -273,16 +273,6 @@ views:
     class: PythonConsoleView
     mounted: true
 toolbars: 
-  "TimeBar": 
-    minTime: 0
-    maxTime: 30
-    frameRate: 1000
-    playbackFrameRate: 60
-    idleLoopDrivenMode: false
-    currentTime: 17.185
-    speedScale: 1
-    syncToOngoingUpdates: true
-    autoExpansion: true
   "BodyMotionGenerationBar": 
     autoGenerationForNewBody: true
     balancer: false
@@ -305,6 +295,16 @@ toolbars:
     zmpMaxDistanceFromCenter: 0.02
     allLinkPositions: false
     lipSyncMix: false
+  "TimeBar": 
+    minTime: 0
+    maxTime: 30
+    frameRate: 1000
+    playbackFrameRate: 60
+    idleLoopDrivenMode: false
+    currentTime: 17.185
+    speedScale: 1
+    syncToOngoingUpdates: true
+    autoExpansion: true
   "KinematicsBar": 
     mode: AUTO
     enablePositionDragger: true
@@ -313,10 +313,10 @@ toolbars:
     snapDistance: 0.025
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
-  "BodyBar": 
-    current: 3
   "LeggedBodyBar": 
     stanceWidth: 0.15
+  "BodyBar": 
+    current: 5
 Body: 
   "BodyMotionEngine": 
     updateJointVelocities: false
