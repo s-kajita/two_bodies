@@ -2,8 +2,9 @@ PLUGINS = BallController.so MarkerController.so
 
 all: $(PLUGINS)
 
-CNOID_DIR = $(HOME)/openrtp
-#CNOID_DIR = $(HOME)/catkin_ws/devel
+CNOID_PATH = $(shell which choreonoid)
+CNOID_DIR  = $(subst /bin/choreonoid,,$(CNOID_PATH))
+
 CXXFLAGS += -fPIC -DQT_NO_KEYWORDS -DQT_SHARED -I$(CNOID_DIR)/include/choreonoid-1.8 -I/usr/include/eigen3 -std=c++11
 
 $(PLUGINS) : %.so : %.o
