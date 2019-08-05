@@ -57,7 +57,7 @@ items:
               0, 1, 0, 
               0, 0, 1 ]
             zmp: [ 0, 0, 0 ]
-            collisionDetection: true
+            collisionDetection: false
             selfCollisionDetection: false
             isEditable: true
           children: 
@@ -151,7 +151,7 @@ views:
     class: ItemTreeView
     mounted: true
     state: 
-      selected: [ 4 ]
+      selected: [ 3 ]
       checked: [ 1, 2, 3, 5 ]
       expanded: [ 1, 2, 3, 4, 5, 6 ]
   - 
@@ -247,7 +247,7 @@ views:
       slider: true
       dial: true
       labelOnLeft: true
-      currentBodyItem: 5
+      currentBodyItem: 3
   - 
     id: 7
     plugin: Body
@@ -255,7 +255,7 @@ views:
     mounted: true
     state: 
       listingMode: "Link List"
-      currentBodyItem: 5
+      currentBodyItem: 3
   - 
     id: 8
     plugin: OpenRTM
@@ -273,16 +273,6 @@ views:
     class: PythonConsoleView
     mounted: true
 toolbars: 
-  "TimeBar": 
-    minTime: 0
-    maxTime: 30
-    frameRate: 1000
-    playbackFrameRate: 60
-    idleLoopDrivenMode: false
-    currentTime: 17.185
-    speedScale: 1
-    syncToOngoingUpdates: true
-    autoExpansion: true
   "BodyMotionGenerationBar": 
     autoGenerationForNewBody: true
     balancer: false
@@ -305,6 +295,16 @@ toolbars:
     zmpMaxDistanceFromCenter: 0.02
     allLinkPositions: false
     lipSyncMix: false
+  "TimeBar": 
+    minTime: 0
+    maxTime: 30
+    frameRate: 1000
+    playbackFrameRate: 60
+    idleLoopDrivenMode: false
+    currentTime: 17.185
+    speedScale: 1
+    syncToOngoingUpdates: true
+    autoExpansion: true
   "KinematicsBar": 
     mode: AUTO
     enablePositionDragger: true
@@ -314,7 +314,7 @@ toolbars:
     penetrationBlockDepth: 0.0005
     lazyCollisionDetectionMode: true
   "BodyBar": 
-    current: 5
+    current: 3
   "LeggedBodyBar": 
     stanceWidth: 0.15
 Body: 
