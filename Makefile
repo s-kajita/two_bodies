@@ -10,14 +10,8 @@ CXXFLAGS += -fPIC -DQT_NO_KEYWORDS -DQT_SHARED -I$(CNOID_DIR)/include/choreonoid
 $(PLUGINS) : %.so : %.o
 	g++ -shared -o $@ $^ -L$(CNOID_DIR)/lib -L/usr/local/lib -lCnoidUtil -lCnoidBase -lCnoidBody
 
-#marker_control.so : %.so : %.o
-#	g++ -shared -o $@ $^ -L$(CNOID_DIR)/lib -L/usr/local/lib -lCnoidUtil -lCnoidBase -lCnoidBody
-
-#BallController.so : %.so : %.o marker_control.o
-#	g++ -shared -o $@ $^ -L$(CNOID_DIR)/lib -L/usr/local/lib -lCnoidUtil -lCnoidBase -lCnoidBody
-
-install: $(PLUGINS)
-	install -s $(PLUGINS) `pkg-config --variable=plugindir choreonoid`
+#install: $(PLUGINS)
+#	install -s $(PLUGINS) `pkg-config --variable=simplecontroller choreonoid
 
 clean:
 	rm -f *.o *.so

@@ -50,7 +50,7 @@ public:
 
   virtual bool start() override
   {
-    //markerControl = MarkerController::get_instance();  // <======== This line makes a CRASH!! ====
+    markerControl = MarkerController::get_instance();  // <======== This line makes a CRASH!! ====
     return true;
   }
 
